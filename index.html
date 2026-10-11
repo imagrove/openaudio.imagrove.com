@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imagrove OpenAudio — 开源多房间音频系统</title>
+<meta name="description" content="基于 ESP32 与 Wi-Fi 的开源多房间音频系统。用 Sonos 1/5 的价格，做一套不被任何厂商锁定的全屋声音。">
+<style>
+  :root { --fg:#0f172a; --muted:#64748b; --bg:#ffffff; --card:#f8fafc; --brand:#0d9488; --border:#e2e8f0; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif; color:var(--fg); background:var(--bg); line-height:1.65; }
+  a { color:var(--brand); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .wrap { max-width:820px; margin:0 auto; padding:0 20px; }
+  header { padding:72px 0 40px; text-align:center; }
+  h1 { font-size:2.4rem; margin:0 0 12px; letter-spacing:-0.02em; }
+  .sub { font-size:1.15rem; color:var(--muted); max-width:640px; margin:0 auto 24px; }
+  .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:10px 18px; border-radius:8px; border:1px solid var(--border); color:var(--fg); font-weight:600; }
+  .btn.primary { background:var(--brand); color:#fff; border-color:var(--brand); }
+  section { padding:28px 0; border-top:1px solid var(--border); }
+  h2 { font-size:1.35rem; margin:0 0 14px; }
+  ul { padding-left:1.2em; }
+  li { margin:6px 0; }
+  pre { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; overflow:auto; font-size:.85rem; }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  th,td { border:1px solid var(--border); padding:8px 10px; text-align:left; }
+  th { background:var(--card); }
+  .cta { text-align:center; }
+  footer { padding:32px 0 64px; color:var(--muted); font-size:.85rem; text-align:center; }
+  .tag { display:inline-block; font-size:.75rem; background:var(--card); border:1px solid var(--border); border-radius:999px; padding:2px 10px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Imagrove OpenAudio</h1>
+    <p class="sub">基于 ESP32 与 Wi-Fi 的开源多房间音频系统<br>从全屋背景音乐到无线 5.1 环绕声，不被任何厂商锁定</p>
+    <div class="btns">
+      <a class="btn primary" href="#progress">查看进度</a>
+      <a class="btn" href="https://github.com/imagrove/openaudio">GitHub 仓库</a>
+      <a class="btn" href="#join">加入社区</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>我们在构建什么</h2>
+    <p>一套<strong>开放、可修复、可扩展</strong>的多房间音频系统。核心是树莓派/Armbian 盒子上的 Snapcast 服务端，加上多个 ESP32 音频节点。每个节点通过 Wi-Fi 接收音频流，同步播放，也可以独立分区。</p>
+    <p><strong>它既能做全屋背景音乐，也能扩展成无线 5.1 环绕声。</strong></p>
+    <p><strong>不锁定硬件，不锁定软件，不锁定你的音箱。</strong></p>
+  </section>
+
+  <section>
+    <h2>它能做什么</h2>
+    <ul>
+      <li><strong>全屋同步播放</strong>：所有房间播放同一首歌，人耳听不出任何延迟差。</li>
+      <li><strong>分区独立播放</strong>：厨房听新闻，客厅听音乐，卧室听白噪音，互不干扰。</li>
+      <li><strong>无线 5.1 环绕声</strong>（规划中）：3-4 个 ESP32 节点分别驱动左前、右前、中置、环绕和低音炮。</li>
+      <li><strong>手机音源接入</strong>：iPhone 走 AirPlay，Android 走蓝牙或 DLNA，Spotify 走 Spotify Connect。</li>
+      <li><strong>智能家居集成</strong>：原生对接 Home Assistant、Music Assistant、ESPHome。</li>
+      <li><strong>低成本扩展</strong>：一个节点不到 ¥200，可以一个一个房间慢慢加。</li>
+      <li><strong>开源可修复</strong>：固件、硬件设计、文档全部开放。你的设备不会被一次软件更新变成废铁。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>架构一览</h2>
+    <pre>音源（AirPlay / 蓝牙 / Spotify / 本地文件）
+  → 服务端（树莓派 / Armbian / x86：Snapserver 解码 + 打时间戳 + 分发）
+  → 多个 ESP32 节点（Wi-Fi 接收 → 同步播放 → 功放 / 音箱）</pre>
+  </section>
+
+  <section id="progress">
+    <h2>当前进度</h2>
+    <table>
+      <tr><th>阶段</th><th>状态</th><th>说明</th></tr>
+      <tr><td>技术验证</td><td>✅ 已完成</td><td>2 节点 Snapcast 系统跑通，同步播放稳定</td></tr>
+      <tr><td>手机音源接入</td><td>✅ 已完成</td><td>AirPlay 与蓝牙推流验证通过</td></tr>
+      <tr><td>分区独立播放</td><td>🔄 进行中</td><td>多流配置与客户端切换逻辑调试</td></tr>
+      <tr><td>PCB v1 设计</td><td>🔄 进行中</td><td>ESP32-S3 + PCM5102A 音频节点</td></tr>
+      <tr><td>固件 v1</td><td>🔄 进行中</td><td>预配置 Wi-Fi、Snapserver 地址、音频参数</td></tr>
+      <tr><td>5.1 环绕声</td><td>⏳ 规划中</td><td>多声道分流与低延迟同步方案验证</td></tr>
+      <tr><td>首批测试</td><td>⏳ 待启动</td><td>计划招募 10-20 名种子用户</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>硬件计划</h2>
+    <table>
+      <tr><th>节点类型</th><th>核心配置</th><th>目标定价</th></tr>
+      <tr><td>基础节点</td><td>ESP32-S3 + PCM5102A DAC</td><td>¥99-149</td></tr>
+      <tr><td>功放节点</td><td>ESP32-S3 + TAS5805M（25W×2）</td><td>¥199-299</td></tr>
+      <tr><td>高功率节点</td><td>ESP32-S3 + TAS5825M（65W）</td><td>¥299-399</td></tr>
+      <tr><td>DIN 导轨版</td><td>功放节点 + W5500 以太网 + DIN 外壳</td><td>¥349-449</td></tr>
+    </table>
+  </section>
+
+  <section id="join">
+    <h2>参与方式</h2>
+    <p>项目还在早期，你的反馈会直接影响产品方向。</p>
+    <ul>
+      <li><strong>GitHub</strong>：<a href="https://github.com/imagrove/openaudio">github.com/imagrove/openaudio</a></li>
+      <li><strong>文档</strong>：<a href="https://openaudio.imagrove.com/docs/">openaudio.imagrove.com/docs</a></li>
+      <li><strong>联系邮箱</strong>：<a href="mailto:hello@openaudio.imagrove.com">hello@openaudio.imagrove.com</a></li>
+      <li><strong>社区</strong>：Home Assistant 中文社区 / 瀚思彼岸 / B 站</li>
+    </ul>
+    <p class="cta"><a class="btn primary" href="mailto:hello@openaudio.imagrove.com?subject=加入 OpenAudio">加入我们</a></p>
+  </section>
+
+  <footer>
+    <p>Imagrove OpenAudio · 开源多房间音频系统 · <span class="tag">openaudio.imagrove.com</span></p>
+    <p>除非特别说明，本项目代码以 GPLv3 发布，硬件设计以 CERN-OHL-S 发布。<br>Snapcast 是独立开源项目，与本项目无官方关联。</p>
+  </footer>
+</div>
+</body>
+</html>
