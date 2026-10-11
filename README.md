@@ -11,4 +11,4 @@ Imagrove OpenAudio 官网门户（landing page）。
 
 ## 内容
 
-文案来源：项目工作区 `04_网站文案.md`。
+文案来源：项目工作区 `03-01_网站文案.md`。
