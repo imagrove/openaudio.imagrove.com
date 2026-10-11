@@ -230,31 +230,50 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#main">跳到主内容</a>
 <div class="wrap">
-  <nav class="nav" id="nav">
-    <span class="brand"><span class="dot"></span>Imagrove OpenAudio</span>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">我们在构建什么</a>
+  <nav class="nav" id="top" aria-label="主导航">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="bm" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs><rect x="0" y="0" width="512" height="512" rx="112" fill="#0e1626"/><g fill="url(#bm)"><rect x="94" y="196" width="44" height="120" rx="22"/><rect x="164" y="146" width="44" height="220" rx="22"/><rect x="234" y="96" width="44" height="320" rx="22"/><rect x="304" y="156" width="44" height="200" rx="22"/><rect x="374" y="186" width="44" height="140" rx="22"/></g></svg>
+      Imagrove OpenAudio
+    </a>
+    <div class="nav-links">
+      <a href="#why">为什么</a>
       <a href="#features">它能做什么</a>
+      <a href="#architecture">架构</a>
+      <a href="https://openaudio.imagrove.com/docs/">文档</a>
       <a href="#progress">当前进度</a>
       <a href="#hardware">硬件计划</a>
+      <a href="#faq">常见问题</a>
       <a href="#join">参与方式</a>
     </div>
-    <div class="nav-actions">
-      <button id="menuBtn" class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="navLinks">
+    <details class="nav-menu">
+      <summary aria-label="打开导航菜单">
         <svg class="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
+      </summary>
+      <div class="menu-panel">
+        <a href="#why">为什么</a>
+        <a href="#features">它能做什么</a>
+        <a href="#architecture">架构</a>
+        <a href="https://openaudio.imagrove.com/docs/">文档</a>
+        <a href="#progress">当前进度</a>
+        <a href="#hardware">硬件计划</a>
+        <a href="#faq">常见问题</a>
+        <a href="#join">参与方式</a>
+      </div>
+    </details>
   </nav>
 
+  <main id="main">
   <header>
     <h1>Imagrove OpenAudio</h1>
     <p class="sub">基于 ESP32 与 Wi-Fi 的开源多房间音频系统<br>从全屋背景音乐到无线 5.1 环绕声，不被任何厂商锁定</p>
     <div class="btns">
-      <a class="btn primary" href="#progress">查看进度</a>
+      <a class="btn primary" href="#subscribe">订阅项目更新</a>
+      <a class="btn" href="https://openaudio.imagrove.com/docs/">文档</a>
       <a class="btn" href="https://github.com/imagrove/openaudio">GitHub 仓库</a>
-      <a class="btn" href="#join">加入社区</a>
+      <a class="btn" href="#progress">查看进度</a>
     </div>
   </header>
 
@@ -263,6 +282,15 @@
     <p>一套<strong>开放、可修复、可扩展</strong>的多房间音频系统。核心是树莓派/Armbian 盒子上的 Snapcast 服务端，加上多个 ESP32 音频节点。每个节点通过 Wi-Fi 接收音频流，同步播放，也可以独立分区。</p>
     <p><strong>它既能做全屋背景音乐，也能扩展成无线 5.1 环绕声。</strong></p>
     <p><strong>不锁定硬件，不锁定软件，不锁定你的音箱。</strong></p>
+  </section>
+
+  <section id="why">
+    <h2>为什么需要它</h2>
+    <div class="grid">
+      <div class="card"><h3>价格</h3><p>一套品牌全屋方案动辄上万元；OpenAudio 单节点不到 ¥200，还能复用你已有的音箱。</p></div>
+      <div class="card"><h3>不锁定</h3><p>品牌方案把你锁进它的 App 与生态；这里固件、硬件、协议全部开放。</p></div>
+      <div class="card"><h3>可修复</h3><p>设备不该被一次软件更新变成废铁。开源意味着你可以自己修、自己改、自己升级。</p></div>
+    </div>
   </section>
 
   <section id="features">
@@ -301,6 +329,12 @@
     </div>
   </section>
 
+  <section id="quickstart">
+    <h2>三分钟上手</h2>
+    <p>装好服务端、插上第一个 ESP32 节点，就能听到声音。完整步骤见文档站的《30 分钟跑通第一个节点》。</p>
+    <p class="cta"><a class="btn" href="https://openaudio.imagrove.com/docs/getting-started/quick-start/">查看快速开始</a></p>
+  </section>
+
   <section id="progress">
     <h2>当前进度</h2>
     <ul class="progress">
@@ -331,17 +365,37 @@
     </div>
   </section>
 
+  <section id="faq">
+    <h2>常见问题</h2>
+    <div class="faq">
+      <details><summary>为什么会有爆音 / 卡顿？</summary><p>关闭 Wi-Fi 省电模式、加大缓冲、让服务端走网线，通常就能解决。</p></details>
+      <details><summary>延迟有多大？</summary><p>背景音乐 1-2 秒可接受；需要音画同步的场景另议。</p></details>
+      <details><summary>支持哪些音源？</summary><p>AirPlay / 蓝牙 / DLNA / Spotify Connect / 本地文件。</p></details>
+      <details><summary>一个节点能接几个音箱？</summary><p>I2S 双声道输出，可接 2 个声道（如左 / 右）。</p></details>
+    </div>
+    <p class="faq-more">更多问题见 <a href="https://openaudio.imagrove.com/docs/faq/">文档 FAQ</a>。</p>
+  </section>
+
   <section id="join">
     <h2>参与方式</h2>
     <p>项目还在早期，你的反馈会直接影响产品方向。</p>
     <ul class="list">
-      <li><strong>GitHub</strong>：<a href="https://github.com/imagrove/openaudio">github.com/imagrove/openaudio</a></li>
+      <li><strong>GitHub</strong>：<a href="https://github.com/imagrove/openaudio">github.com/imagrove/openaudio</a><span class="stars" id="stars" hidden></span></li>
       <li><strong>文档</strong>：<a href="https://openaudio.imagrove.com/docs/">openaudio.imagrove.com/docs</a></li>
       <li><strong>联系邮箱</strong>：<a href="mailto:openaudio@imagrove.com">openaudio@imagrove.com</a></li>
       <li><strong>社区</strong>：Home Assistant 中文社区 / 瀚思彼岸 / B 站</li>
     </ul>
-    <p class="cta"><a class="btn primary" href="mailto:openaudio@imagrove.com?subject=加入 OpenAudio">加入我们</a></p>
+
+    <div class="subscribe" id="subscribe">
+      <div>
+        <h3>订阅项目更新</h3>
+        <p>公测、硬件开卖、新功能上线，第一时间通知你。</p>
+      </div>
+      <!-- TODO: 拿到飞书表单分享链接后，替换下面的 href -->
+      <a class="btn primary" href="mailto:openaudio@imagrove.com?subject=订阅 OpenAudio" target="_blank" rel="noopener">订阅更新</a>
+    </div>
   </section>
+  </main>
 
   <footer>
     <p>Imagrove OpenAudio · 开源多房间音频系统 · <span class="tag">openaudio.imagrove.com</span></p>
@@ -350,28 +404,33 @@
 </div>
 <script>
   (function () {
-    var nav = document.getElementById('nav');
-    var menuBtn = document.getElementById('menuBtn');
-    function closeMenu() {
-      nav.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+    var menu = document.querySelector('.nav-menu');
+    if (menu) {
+      menu.querySelectorAll('.menu-panel a').forEach(function (a) {
+        a.addEventListener('click', function () { menu.removeAttribute('open'); });
+      });
+      document.addEventListener('click', function (e) {
+        if (menu.hasAttribute('open') && !menu.contains(e.target)) menu.removeAttribute('open');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') menu.removeAttribute('open');
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 820) menu.removeAttribute('open');
+      });
     }
-    menuBtn.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    nav.querySelectorAll('.nav-links a').forEach(function (a) {
-      a.addEventListener('click', closeMenu);
-    });
-    document.addEventListener('click', function (e) {
-      if (nav.classList.contains('open') && !nav.contains(e.target)) closeMenu();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
-    });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 820) closeMenu();
-    });
+
+    var stars = document.getElementById('stars');
+    if (stars) {
+      fetch('https://api.github.com/repos/imagrove/openaudio')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+          if (!d || typeof d.stargazers_count !== 'number') return;
+          stars.textContent = '★ ' + d.stargazers_count.toLocaleString('en-US');
+          stars.hidden = false;
+        })
+        .catch(function () {});
+    }
   })();
 </script>
 </body>
