@@ -1,13 +1,14 @@
 # openaudio.imagrove.com
 
-Imagrove OpenAudio 官网门户（landing page）。
+Imagrove OpenAudio 官网门户（landing page）+ 文档入口。
 
-- 静态单页：`index.html`（自包含，无外部依赖）
-- 自定义域名：`openaudio.imagrove.com`（见 `CNAME`）
+- `index.html`：自包含静态落地页
+- `vercel.json`：把 `/docs` 反代到文档站 `openaudio-docs.vercel.app`
 
 ## 部署
 
-仓库 Settings → Pages：Source 选择 **Deploy from a branch**，分支 `main`、目录 `/ (root)`，并设置 Custom domain 为 `openaudio.imagrove.com`、勾选 Enforce HTTPS。
+托管在 **Vercel**（团队 `imagroves-projects`），自定义域名 `openaudio.imagrove.com`。
+因组织仓库在 Hobby 计划的 Git 集成限制，采用 `.github/workflows/deploy.yml` 的 **Vercel 隧道**方式部署（GitHub Actions 内用 CLI 上传，不依赖 Vercel↔Git 直连）。
 
 ## 内容
 

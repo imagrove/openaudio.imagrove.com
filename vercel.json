@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/docs", "destination": "https://openaudio-docs.vercel.app/" },
+    { "source": "/docs/(.*)", "destination": "https://openaudio-docs.vercel.app/$1" }
+  ]
+}
